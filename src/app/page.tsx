@@ -5,13 +5,14 @@ import { motion } from 'framer-motion'
 import {
   MagnifyingGlassIcon,
   CalendarIcon,
+  MapPinIcon,
   UserGroupIcon,
   CloudIcon,
   BellIcon,
   MoonIcon,
   SunIcon,
   GlobeAltIcon,
-  TrainIcon,
+  RocketLaunchIcon as TrainIcon,
   MicrophoneIcon,
 } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
