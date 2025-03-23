@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
+import { LatLngTuple } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
@@ -21,7 +22,7 @@ const trainIcon = new L.Icon({
 
 export default function Map() {
   // Example route coordinates (should be fetched from API)
-  const routeCoordinates = [
+  const routeCoordinates: LatLngTuple[] = [
     [20.5937, 78.9629], // Starting point
     [21.1458, 79.0882], // Intermediate point
     [22.5726, 88.3639], // End point
