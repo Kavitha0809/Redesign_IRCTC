@@ -1,8 +1,0 @@
-{
-  "/booking/page": "app/booking/page.js",
-  "/search-results/page": "app/search-results/page.js",
-  "/track/page": "app/track/page.js",
-  "/page": "app/page.js",
-  "/auth/page": "app/auth/page.js",
-  "/booking-confirmation/page": "app/booking-confirmation/page.js"
-}
