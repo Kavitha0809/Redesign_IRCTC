@@ -4,7 +4,7 @@ import {
   Bars3Icon,
   XMarkIcon,
   UserCircleIcon,
-  TrainIcon,
+  RocketLaunchIcon as TrainIcon,
   MapIcon,
   CalendarIcon,
   CurrencyRupeeIcon,

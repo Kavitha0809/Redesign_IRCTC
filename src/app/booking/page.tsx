@@ -11,23 +11,22 @@ interface PassengerDetails {
   gender: 'male' | 'female' | 'other'
 }
 
-export default function BookingPage() {
+export default function BookingPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const [bookingError, setBookingError] = useState('')
 
-  // Get train details from URL params
-  const trainName = searchParams.get('trainName')
-  const trainNumber = searchParams.get('trainNumber')
-  const from = searchParams.get('from')
-  const to = searchParams.get('to')
-  const date = searchParams.get('date')
-  const travelClass = searchParams.get('class')
-  const numPassengers = parseInt(searchParams.get('passengers') || '1')
-  const price = parseInt(searchParams.get('price') || '0')
-  const departure = searchParams.get('departure')
-  const arrival = searchParams.get('arrival')
+  // Get train details from URL params with null checks
+  const trainName = searchParams?.['trainName'] || ''
+  const trainNumber = searchParams?.['trainNumber'] || ''
+  const from = searchParams?.['from'] || ''
+  const to = searchParams?.['to'] || ''
+  const date = searchParams?.['date'] || ''
+  const travelClass = searchParams?.['class'] || ''
+  const numPassengers = parseInt(searchParams?.['passengers']?.toString() || '1')
+  const price = parseInt(searchParams?.['price']?.toString() || '0')
+  const departure = searchParams?.['departure'] || ''
+  const arrival = searchParams?.['arrival'] || ''
 
   // Initialize passenger details array based on number of passengers
   const [passengers, setPassengers] = useState<PassengerDetails[]>(
