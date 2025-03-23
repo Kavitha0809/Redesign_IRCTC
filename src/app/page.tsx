@@ -214,6 +214,11 @@ export default function Home() {
     await loadRecommendations()
   }
 
+  const handleVoiceSearchError = (error: string) => {
+    console.error('Voice search error:', error)
+    // You could also add a toast notification here if you want to show the error to the user
+  }
+
   const handleRecommendationSelect = (recommendation: Recommendation) => {
     setSearchParams(prev => ({
       ...prev,
@@ -547,7 +552,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">AI Recommendations</h2>
             <div className="flex justify-between items-center mb-8">
-              <VoiceSearch onResult={handleVoiceSearchResult} />
+              <VoiceSearch 
+                onResult={handleVoiceSearchResult} 
+                onError={handleVoiceSearchError}
+              />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
