@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { ArrowLongRightIcon, UserIcon, CurrencyRupeeIcon } from '@heroicons/react/24/outline'
 
@@ -11,22 +11,37 @@ interface PassengerDetails {
   gender: 'male' | 'female' | 'other'
 }
 
-export default function BookingPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+interface BookingPageProps {
+  searchParams: {
+    trainName?: string
+    trainNumber?: string
+    from?: string
+    to?: string
+    date?: string
+    class?: string
+    passengers?: string
+    price?: string
+    departure?: string
+    arrival?: string
+  }
+}
+
+export default function BookingPage({ searchParams }: BookingPageProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [bookingError, setBookingError] = useState('')
 
   // Get train details from URL params with null checks
-  const trainName = searchParams?.['trainName'] || ''
-  const trainNumber = searchParams?.['trainNumber'] || ''
-  const from = searchParams?.['from'] || ''
-  const to = searchParams?.['to'] || ''
-  const date = searchParams?.['date'] || ''
-  const travelClass = searchParams?.['class'] || ''
-  const numPassengers = parseInt(searchParams?.['passengers']?.toString() || '1')
-  const price = parseInt(searchParams?.['price']?.toString() || '0')
-  const departure = searchParams?.['departure'] || ''
-  const arrival = searchParams?.['arrival'] || ''
+  const trainName = searchParams?.trainName || ''
+  const trainNumber = searchParams?.trainNumber || ''
+  const from = searchParams?.from || ''
+  const to = searchParams?.to || ''
+  const date = searchParams?.date || ''
+  const travelClass = searchParams?.class || ''
+  const numPassengers = parseInt(searchParams?.passengers || '1')
+  const price = parseInt(searchParams?.price || '0')
+  const departure = searchParams?.departure || ''
+  const arrival = searchParams?.arrival || ''
 
   // Initialize passenger details array based on number of passengers
   const [passengers, setPassengers] = useState<PassengerDetails[]>(

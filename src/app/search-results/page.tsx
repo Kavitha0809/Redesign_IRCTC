@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLongRightIcon, ClockIcon, CurrencyRupeeIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
@@ -40,18 +40,28 @@ const MOCK_TRAINS = [
   },
 ]
 
-export default function SearchResults() {
-  const searchParams = useSearchParams()
+interface SearchResultsPageProps {
+  searchParams: {
+    from?: string
+    to?: string
+    date?: string
+    class?: string
+    passengers?: string
+  }
+}
+
+export default function SearchResultsPage({ searchParams }: SearchResultsPageProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
   const [trains, setTrains] = useState(MOCK_TRAINS)
   const [error, setError] = useState('')
 
-  const from = searchParams.get('from')
-  const to = searchParams.get('to')
-  const date = searchParams.get('date')
-  const travelClass = searchParams.get('class')
-  const passengers = searchParams.get('passengers')
+  // Access searchParams directly as an object
+  const from = searchParams?.from || ''
+  const to = searchParams?.to || ''
+  const date = searchParams?.date || ''
+  const travelClass = searchParams?.class || ''
+  const numPassengers = parseInt(searchParams?.passengers || '1')
 
   // Validate required search parameters
   useEffect(() => {
