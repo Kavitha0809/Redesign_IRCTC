@@ -94,21 +94,20 @@ export default function SearchResultsPage({ searchParams }: SearchResultsPagePro
   }, [fetchTrains])
 
   const handleBooking = useCallback((train: typeof MOCK_TRAINS[0]) => {
-    const bookingParams = new URLSearchParams({
-      trainName: train.name,
-      trainNumber: train.number,
-      from: from || '',
-      to: to || '',
-      date: date || '',
-      class: travelClass || '',
-      passengers: passengers || '1',
-      price: train.price.toString(),
-      departure: train.departure,
-      arrival: train.arrival
-    })
+    const bookingParams = new URLSearchParams()
+    bookingParams.set('trainName', train.name)
+    bookingParams.set('trainNumber', train.number)
+    bookingParams.set('from', from || '')
+    bookingParams.set('to', to || '')
+    bookingParams.set('date', date || '')
+    bookingParams.set('class', travelClass || '')
+    bookingParams.set('passengers', numPassengers.toString())
+    bookingParams.set('price', train.price.toString())
+    bookingParams.set('departure', train.departure)
+    bookingParams.set('arrival', train.arrival)
     
     router.push(`/booking?${bookingParams.toString()}`)
-  }, [from, to, date, travelClass, passengers, router])
+  }, [from, to, date, travelClass, numPassengers, router])
 
   if (error) {
     return (
@@ -165,7 +164,7 @@ export default function SearchResultsPage({ searchParams }: SearchResultsPagePro
             </div>
             <div>
               <span className="font-semibold mr-2">Passengers:</span>
-              {passengers}
+              {numPassengers}
             </div>
           </div>
         </div>
